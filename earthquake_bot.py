@@ -45,7 +45,7 @@ def send_telegram_message(text):
         print(f"Error connecting to Telegram: {e}")
 
 def check_earthquakes():
-    print("Checking USGS for new M5.5+ earthquakes...")
+    print("Checking USGS for new M5.0+ earthquakes...")
     seen_quakes = load_seen_quakes()
     
     try:
@@ -59,7 +59,8 @@ def check_earthquakes():
             place = properties['place']
             url = properties['url']
             
-            if magnitude is not None and magnitude >= 5.5:
+            # Changed magnitude filter threshold to 5.0
+            if magnitude is not None and magnitude >= 5.0:
                 if quake_id not in seen_quakes:
                     message = (
                         f"🚨 *New Major Earthquake Alert!* 🚨\n\n"
